@@ -23,6 +23,7 @@ class Cartfile(object):
 
         # TODO: This is of course super feeble parsing. URLs with #s in them can break for example
         lines = [line.rstrip() for line in source.splitlines()]
+        lines = [line for line in lines if not line.startswith('#')]  # NB: we strip out comment lines
         lines = [re.sub(r'#.+', '', line) for line in lines]
         lines = [line.strip() for line in lines]
         lines = [line for line in lines if line]
