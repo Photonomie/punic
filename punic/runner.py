@@ -8,6 +8,7 @@ import shelve
 from subprocess import CalledProcessError
 from memoize import mproperty
 import six
+from .compat import safe_unicode
 from .logger import *
 
 
@@ -96,9 +97,9 @@ class Runner(object):
         stdout, stderr = popen.communicate()
 
         if stdout:
-            stdout = unicode(stdout, encoding='utf-8')
+            stdout = safe_unicode(stdout, encoding='utf-8')
         if stderr:
-            stderr = unicode(stderr, encoding='utf-8')
+            stderr = safe_unicode(stderr, encoding='utf-8')
 
         return_code = popen.returncode
 
